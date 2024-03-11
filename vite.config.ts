@@ -5,7 +5,6 @@ import type { UserConfig } from 'vite'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Icons from 'unplugin-icons/vite'
-import IconsResolver from 'unplugin-icons/resolver'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import UnoCSS from 'unocss/vite'
@@ -45,9 +44,6 @@ export const sharedConfig: UserConfig = {
       dts: r('src/components.d.ts'),
       resolvers: [
         // auto import icons
-        IconsResolver({
-          prefix: '',
-        }),
       ],
     }),
 

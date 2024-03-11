@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
 import { onMessage } from 'webext-bridge/content-script'
 import { createApp } from 'vue'
+import ElementPlus from 'element-plus'
 import App from './views/App.vue'
 import { setupApp } from '~/logic/common-setup'
+import 'element-plus/dist/index.css'
 
 // Firefox `browser.tabs.executeScript()` requires scripts return a primitive value
 (() => {
@@ -25,6 +27,7 @@ import { setupApp } from '~/logic/common-setup'
   shadowDOM.appendChild(root)
   document.body.appendChild(container)
   const app = createApp(App)
+  app.use(ElementPlus)
   setupApp(app)
   app.mount(root)
 })()
