@@ -13,6 +13,20 @@ export default defineConfig({
     // https://github.com/vitejs/vite/issues/9186
     'process.env.NODE_ENV': JSON.stringify(isDev ? 'development' : 'production'),
   },
+  css: {
+    postcss: {
+      plugins: [
+        {
+          postcss(root) {
+            root.walkRules((rule) => {
+              if (rule.selector === ':root')
+                rule.selector = ':host'
+            })
+          },
+        },
+      ],
+    },
+  },
   build: {
     watch: isDev
       ? {}

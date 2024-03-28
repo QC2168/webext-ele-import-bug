@@ -68,6 +68,7 @@ export const sharedConfig: UserConfig = {
       'vue',
       '@vueuse/core',
       'webextension-polyfill',
+      'element-plus',
     ],
     exclude: [
       'vue-demi',
