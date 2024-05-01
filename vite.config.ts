@@ -39,7 +39,7 @@ export const sharedConfig: UserConfig = {
 
     // https://github.com/antfu/unplugin-vue-components
     Components({
-      dirs: [r('src/components')],
+      dirs: [r('src/components'), r('src/contentScripts/views')],
       // generate `components.d.ts` for ts support with Volar
       dts: r('src/components.d.ts'),
       resolvers: [
@@ -73,6 +73,25 @@ export const sharedConfig: UserConfig = {
     exclude: [
       'vue-demi',
     ],
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@use "~/styles/element/index.scss" as *;',
+      },
+    },
+    postcss: {
+      plugins: [
+        {
+          postcss(root) {
+            root.walkRules((rule) => {
+              if (rule.selector === ':root')
+                rule.selector = ':host'
+            })
+          },
+        },
+      ],
+    },
   },
 }
 
